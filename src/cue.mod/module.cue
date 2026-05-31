@@ -6,10 +6,6 @@ source: {
 	kind: "self"
 }
 deps: {
-	"cue.dev/x/k8s.io@v0": {
-		v:       "v0.7.0"
-		default: true
-	}
 	"opmodel.dev/core@v0": {
 		v: "v0.3.0"
 	}
