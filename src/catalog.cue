@@ -11,7 +11,7 @@
 package opm_experimental
 
 import (
-	c "opmodel.dev/core@v0"
+	c "opmodel.dev/core@v1"
 	id "opmodel.dev/catalogs/opm-experimental/identity"
 )
 
