@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repo defines and publishes the **OPM experimental catalog** as a versioned CUE module (`opmodel.dev/catalogs/opm-experimental@v0`).
+This repo defines and publishes the **OPM experimental catalog** as a versioned CUE module (`opmodel.dev/catalogs/opm-experimental@v1`).
 
 It is the staging ground for new OPM Kubernetes building blocks — `#Resource`s, `#Trait`s, `#Blueprint`s, and `#ComponentTransformer`s — that are being trialled before (or instead of) being ported into the stable `opmodel.dev/catalogs/opm` catalog (the `catalog_opm` repo). It is typed only against the `core` schema — it does NOT depend on `catalog_opm`.
 
@@ -14,25 +14,25 @@ This is a pure CUE repository. No Go code.
 
 This is its **own independent catalog** — it does NOT depend on `catalog_opm`. Both catalogs sit side by side, each typed only against `core`.
 
-- **`catalog_opm`** (`opmodel.dev/catalogs/opm@v0`) — the stable catalog. A separate, parallel catalog; mature primitives may be promoted there by porting, not by dependency.
-- **`core`** (`opmodel.dev/core@v0`) — the schema everything is typed against. The only OPM dependency.
+- **`catalog_opm`** (`opmodel.dev/catalogs/opm@v1`) — the stable catalog. A separate, parallel catalog; mature primitives may be promoted there by porting, not by dependency.
+- **`core`** (`opmodel.dev/core@v1`) — the schema everything is typed against. The only OPM dependency.
 - **`catalog/`** (legacy, deprecated/read-only) — old multi-domain catalog; reference only when authoring future provider catalogs.
 
 ## Repository Layout
 
 ```text
-src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm-experimental@v0
+src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm-experimental@v1
 src/catalog.cue          catalog manifest (bare c.#Catalog; empty transformers for now)
 src/identity/            ModulePath + Version (publish-time stamping anchor)
 src/INDEX.md             generated definition index (ships inside the CUE module)
 .tasks/                  Taskfile script fragments (index + branch-tag)
 ```
 
-`src/` is the CUE module root. Internal imports resolve as `opmodel.dev/catalogs/opm-experimental/...` relative to it. A breaking revision bumps the module major (`@v0` → `@v1`).
+`src/` is the CUE module root. Internal imports resolve as `opmodel.dev/catalogs/opm-experimental/...` relative to it. A breaking revision bumps the module major (`@v1` → `@v2`).
 
 ## Dependencies
 
-- `opmodel.dev/core@v0` — the OPM schema this catalog instantiates. The only OPM dependency.
+- `opmodel.dev/core@v1` — the OPM schema this catalog instantiates. The only OPM dependency.
 - `cue.dev/x/k8s.io@v0` — vendored Kubernetes types.
 
 `cue vet` needs a reachable registry. Export the workspace registry vars from the root `CLAUDE.md` (`CUE_REGISTRY`, `OPM_REGISTRY`) before running raw `cue` outside `task`.

@@ -63,5 +63,5 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="v${{ needs.release-please.outputs.version }}"
-          echo "Publishing opmodel.dev/catalogs/opm-experimental@v0 at ${VERSION}"
+          echo "Publishing opmodel.dev/catalogs/opm-experimental@v1 at ${VERSION}"
           task publish VERSION="${VERSION}"

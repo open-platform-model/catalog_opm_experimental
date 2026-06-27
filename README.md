@@ -1,19 +1,19 @@
 # OPM experimental catalog
 
-The staging catalog for the Open Platform Model. `catalog_opm_experimental` is where new `#Resource`s, `#Trait`s, `#Blueprint`s, and `#ComponentTransformer`s are trialled before (or instead of) graduating into the stable catalog (`catalog_opm` / `opmodel.dev/catalogs/opm@v0`).
+The staging catalog for the Open Platform Model. `catalog_opm_experimental` is where new `#Resource`s, `#Trait`s, `#Blueprint`s, and `#ComponentTransformer`s are trialled before (or instead of) graduating into the stable catalog (`catalog_opm` / `opmodel.dev/catalogs/opm@v1`).
 
-This repository is a single CUE module, `opmodel.dev/catalogs/opm-experimental@v0`, published to `ghcr.io/open-platform-model/catalogs/opm-experimental` and consumed via `import "opmodel.dev/catalogs/opm-experimental@v0"` (package `opm_experimental`).
+This repository is a single CUE module, `opmodel.dev/catalogs/opm-experimental@v1`, published to `ghcr.io/open-platform-model/catalogs/opm-experimental` and consumed via `import "opmodel.dev/catalogs/opm-experimental@v1"` (package `opm_experimental`).
 
-The module is pre-1.0 and explicitly experimental: expect breaking changes in any release.
+The module is explicitly experimental and ships on a v1 alpha prerelease line (`v1.x.x-alpha.x`, enhancement 0002 / D14): expect breaking changes in any release.
 
 **Current state:** skeleton — scaffolding only, no catalog content yet.
 
 ## Layout
 
-The CUE module lives under `src/` — both the catalog package files and `cue.mod/` sit there, so `src/` is the module root and the import path stays `opmodel.dev/catalogs/opm-experimental@v0`.
+The CUE module lives under `src/` — both the catalog package files and `cue.mod/` sit there, so `src/` is the module root and the import path stays `opmodel.dev/catalogs/opm-experimental@v1`.
 
 ```text
-src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm-experimental@v0
+src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm-experimental@v1
 src/catalog.cue          catalog manifest (c.#Catalog; empty transformers for now)
 src/identity/            ModulePath + Version (publish-time stamping anchor)
 src/INDEX.md             generated definition index
@@ -21,7 +21,7 @@ src/INDEX.md             generated definition index
 
 ## Dependencies
 
-- `opmodel.dev/core@v0` — the OPM schema this catalog instantiates. The only OPM dependency.
+- `opmodel.dev/core@v1` — the OPM schema this catalog instantiates. The only OPM dependency.
 - `cue.dev/x/k8s.io@v0` — vendored Kubernetes types.
 
 This catalog is independent of `catalog_opm` (`opmodel.dev/catalogs/opm`) — they are parallel catalogs, not layered.
