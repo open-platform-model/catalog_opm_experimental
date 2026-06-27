@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.1.0...v1.2.0-alpha) (2026-06-27)
+
+
+### Features
+
+* **catalog-exp:** pin core@v1 and bump module to [@v1](https://github.com/v1) ([#4](https://github.com/open-platform-model/catalog_opm_experimental/issues/4)) ([17ce1a3](https://github.com/open-platform-model/catalog_opm_experimental/commit/17ce1a38248b740cd26b057c9f6878e519403257))
+
 ## [1.1.0](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.0.0...v1.1.0) (2026-05-31)
 
 
