@@ -1,8 +1,8 @@
 // Catalog manifest for the OPM experimental catalog. Embeds bare c.#Catalog
 // (modules pattern — no Catalog: wrapper) and sources metadata from the sibling
-// identity/ package. This catalog is a skeleton: it carries no transformers yet.
-// Experimental resources, traits, blueprints, and transformers land here before
-// (or instead of) graduating into the stable opmodel.dev/catalogs/opm catalog.
+// identity/ package. Experimental resources, traits, blueprints, and
+// transformers land here before (or instead of) graduating into the stable
+// opmodel.dev/catalogs/opm catalog.
 //
 // To add a transformer: define it under transformers/ and enumerate it in the
 // #transformers map below, keyed by its own metadata.fqn. Resources, traits, and
@@ -13,6 +13,7 @@ package opm_experimental
 import (
 	c "opmodel.dev/core@v1"
 	id "opmodel.dev/catalogs/opm-experimental/identity"
+	tf "opmodel.dev/catalogs/opm-experimental/transformers"
 )
 
 c.#Catalog
@@ -22,6 +23,8 @@ metadata: {
 	description: "OPM experimental catalog — staging ground for new resources, traits, blueprints, and transformers"
 }
 
-// No transformers yet — this catalog is a skeleton. Add entries keyed by
-// metadata.fqn as experimental transformers are introduced.
-#transformers: {}
+#transformers: {
+	(tf.#NamespaceTransformer.metadata.fqn):         tf.#NamespaceTransformer
+	(tf.#ValidatingWebhookTransformer.metadata.fqn): tf.#ValidatingWebhookTransformer
+	(tf.#MutatingWebhookTransformer.metadata.fqn):   tf.#MutatingWebhookTransformer
+}
