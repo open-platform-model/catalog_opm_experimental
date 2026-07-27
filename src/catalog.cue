@@ -12,8 +12,8 @@ package opm_experimental
 
 import (
 	c "opmodel.dev/core@v1"
-	id "opmodel.dev/catalogs/opm-experimental/identity"
-	tf "opmodel.dev/catalogs/opm-experimental/transformers"
+	id "opmodel.dev/catalogs/opm_experimental/identity"
+	tf "opmodel.dev/catalogs/opm_experimental/transformers"
 )
 
 c.#Catalog

@@ -33,7 +33,7 @@ jobs:
           manifest-file: .release-please-manifest.json
 
   publish-cue:
-    name: Publish opmodel.dev/catalogs/opm-experimental
+    name: Publish opmodel.dev/catalogs/opm_experimental
     needs: release-please
     if: needs.release-please.outputs.release_created == 'true'
     runs-on: ubuntu-latest
@@ -63,5 +63,5 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="v${{ needs.release-please.outputs.version }}"
-          echo "Publishing opmodel.dev/catalogs/opm-experimental@v1 at ${VERSION}"
+          echo "Publishing opmodel.dev/catalogs/opm_experimental@v1 at ${VERSION}"
           task publish VERSION="${VERSION}"

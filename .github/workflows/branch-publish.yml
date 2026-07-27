@@ -15,7 +15,7 @@ env:
 
 jobs:
   publish:
-    name: Publish opmodel.dev/catalogs/opm-experimental (dev tag)
+    name: Publish opmodel.dev/catalogs/opm_experimental (dev tag)
     # Forks have no access to GITHUB_TOKEN with packages:write — skip cleanly.
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest

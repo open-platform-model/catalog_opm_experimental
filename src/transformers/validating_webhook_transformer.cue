@@ -1,9 +1,9 @@
 package transformers
 
 import (
-	id "opmodel.dev/catalogs/opm-experimental/identity"
+	id "opmodel.dev/catalogs/opm_experimental/identity"
 	c "opmodel.dev/core@v1"
-	res "opmodel.dev/catalogs/opm-experimental/resources"
+	res "opmodel.dev/catalogs/opm_experimental/resources"
 )
 
 // ValidatingWebhookTransformer converts ValidatingWebhooks resources to
@@ -138,7 +138,7 @@ _testValidatingWebhooksTransformer: (#ValidatingWebhookTransformer.#transform & 
 		#moduleInstanceMetadata: {
 			name:      "test-instance"
 			namespace: "istio-system"
-			fqn:       "opmodel.dev/catalogs/opm-experimental/test-instance@0.1.0"
+			fqn:       "opmodel.dev/catalogs/opm_experimental/test-instance@0.1.0"
 			version:   "0.1.0"
 			uuid:      "00000000-0000-0000-0000-000000000000"
 		}

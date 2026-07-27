@@ -15,7 +15,7 @@ package identity
 #VersionType: string & =~"^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
 
 // ModulePath is the catalog's CUE module path (no @vN qualifier, no version).
-ModulePath: "opmodel.dev/catalogs/opm-experimental"
+ModulePath: "opmodel.dev/catalogs/opm_experimental"
 
 // Version is the catalog's bare SemVer. Defaults to the dev sentinel in the
 // committed tree; a publish-time version_override.cue unifies it to a

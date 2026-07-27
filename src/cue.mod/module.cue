@@ -1,4 +1,4 @@
-module: "opmodel.dev/catalogs/opm-experimental@v1"
+module: "opmodel.dev/catalogs/opm_experimental@v1"
 language: {
 	version: "v0.17.0"
 }
@@ -7,6 +7,6 @@ source: {
 }
 deps: {
 	"opmodel.dev/core@v1": {
-		v: "v1.0.0-alpha.1"
+		v: "v1.0.0-alpha.3"
 	}
 }
