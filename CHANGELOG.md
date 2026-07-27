@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha.1](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha...v1.2.0-alpha.1) (2026-07-27)
+
+
+### Features
+
+* add Namespaces and admission-webhook primitives ([ac9f897](https://github.com/open-platform-model/catalog_opm_experimental/commit/ac9f897fd4891d2dccdeca2cf899933b0a6565e2))
+
 ## [1.2.0-alpha](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.1.0...v1.2.0-alpha) (2026-06-27)
 
 
