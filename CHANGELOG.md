@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha.2](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha.1...v1.2.0-alpha.2) (2026-07-27)
+
+
+### Features
+
+* rename module path to opmodel.dev/catalogs/opm_experimental ([#8](https://github.com/open-platform-model/catalog_opm_experimental/issues/8)) ([1ffbfa1](https://github.com/open-platform-model/catalog_opm_experimental/commit/1ffbfa1ef66ef737034956dbcda8f30f53004b01))
+
 ## [1.2.0-alpha.1](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha...v1.2.0-alpha.1) (2026-07-27)
 
 
