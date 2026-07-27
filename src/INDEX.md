@@ -1,6 +1,6 @@
 # catalog_opm_experimental — Definition Index
 
-CUE module: `opmodel.dev/catalogs/opm-experimental@v1`
+CUE module: `opmodel.dev/catalogs/opm_experimental@v1`
 
 ---
 

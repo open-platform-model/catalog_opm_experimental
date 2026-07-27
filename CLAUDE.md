@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repo defines and publishes the **OPM experimental catalog** as a versioned CUE module (`opmodel.dev/catalogs/opm-experimental@v1`).
+This repo defines and publishes the **OPM experimental catalog** as a versioned CUE module (`opmodel.dev/catalogs/opm_experimental@v1`).
 
 It is the staging ground for new OPM Kubernetes building blocks — `#Resource`s, `#Trait`s, `#Blueprint`s, and `#ComponentTransformer`s — that are being trialled before (or instead of) being ported into the stable `opmodel.dev/catalogs/opm` catalog (the `catalog_opm` repo). It is typed only against the `core` schema — it does NOT depend on `catalog_opm`.
 
@@ -21,14 +21,14 @@ This is its **own independent catalog** — it does NOT depend on `catalog_opm`.
 ## Repository Layout
 
 ```text
-src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm-experimental@v1
+src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm_experimental@v1
 src/catalog.cue          catalog manifest (bare c.#Catalog; empty transformers for now)
 src/identity/            ModulePath + Version (publish-time stamping anchor)
 src/INDEX.md             generated definition index (ships inside the CUE module)
 .tasks/                  Taskfile script fragments (index + branch-tag)
 ```
 
-`src/` is the CUE module root. Internal imports resolve as `opmodel.dev/catalogs/opm-experimental/...` relative to it. A breaking revision bumps the module major (`@v1` → `@v2`).
+`src/` is the CUE module root. Internal imports resolve as `opmodel.dev/catalogs/opm_experimental/...` relative to it. A breaking revision bumps the module major (`@v1` → `@v2`).
 
 ## Dependencies
 
@@ -43,7 +43,7 @@ Same publish-time stamping as `catalog_opm`: the committed tree resolves `identi
 
 ## Adding content
 
-1. Add `resources/`, `traits/`, `blueprints/`, and/or `transformers/` packages under `src/` (follow the `catalog_opm` patterns; import `id "opmodel.dev/catalogs/opm-experimental/identity"`).
+1. Add `resources/`, `traits/`, `blueprints/`, and/or `transformers/` packages under `src/` (follow the `catalog_opm` patterns; import `id "opmodel.dev/catalogs/opm_experimental/identity"`).
 2. Register each transformer in `src/catalog.cue`'s `#transformers` map, keyed by `metadata.fqn`. Resources/traits/blueprints surface transitively via transformer required/optional maps.
 3. `task generate:index` to refresh `src/INDEX.md`.
 4. `task check` (fmt + vet + INDEX freshness) before finishing.

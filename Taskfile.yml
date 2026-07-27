@@ -73,7 +73,7 @@ tasks:
   # dev sentinel is refused.
 
   publish:
-    desc: Publish opmodel.dev/catalogs/opm-experimental at VERSION via temp-build stamping (e.g. task publish VERSION=v0.1.0)
+    desc: Publish opmodel.dev/catalogs/opm_experimental at VERSION via temp-build stamping (e.g. task publish VERSION=v0.1.0)
     requires:
       vars: [VERSION]
     vars:
@@ -118,9 +118,9 @@ tasks:
         echo "Validating catalog at ${RESOLVED}..."
         (cd "$BUILD" && cue vet ./...)
 
-        echo "Publishing opmodel.dev/catalogs/opm-experimental@${RESOLVED} (OCI tag v${RESOLVED}) to ${CUE_REGISTRY}..."
+        echo "Publishing opmodel.dev/catalogs/opm_experimental@${RESOLVED} (OCI tag v${RESOLVED}) to ${CUE_REGISTRY}..."
         (cd "$BUILD" && cue mod publish "v${RESOLVED}")
-        echo "Published opmodel.dev/catalogs/opm-experimental@${RESOLVED}"
+        echo "Published opmodel.dev/catalogs/opm_experimental@${RESOLVED}"
 
   branch-tag:
     desc: Print the branch-publish tag for HEAD (no side effects)

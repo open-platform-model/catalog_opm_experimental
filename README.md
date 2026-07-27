@@ -2,7 +2,7 @@
 
 The staging catalog for the Open Platform Model. `catalog_opm_experimental` is where new `#Resource`s, `#Trait`s, `#Blueprint`s, and `#ComponentTransformer`s are trialled before (or instead of) graduating into the stable catalog (`catalog_opm` / `opmodel.dev/catalogs/opm@v1`).
 
-This repository is a single CUE module, `opmodel.dev/catalogs/opm-experimental@v1`, published to `ghcr.io/open-platform-model/catalogs/opm-experimental` and consumed via `import "opmodel.dev/catalogs/opm-experimental@v1"` (package `opm_experimental`).
+This repository is a single CUE module, `opmodel.dev/catalogs/opm_experimental@v1`, published to `ghcr.io/open-platform-model/catalogs/opm_experimental` and consumed via `import "opmodel.dev/catalogs/opm_experimental@v1"` (package `opm_experimental`).
 
 The module is explicitly experimental and ships on a v1 alpha prerelease line (`v1.x.x-alpha.x`, enhancement 0002 / D14): expect breaking changes in any release.
 
@@ -10,10 +10,10 @@ The module is explicitly experimental and ships on a v1 alpha prerelease line (`
 
 ## Layout
 
-The CUE module lives under `src/` — both the catalog package files and `cue.mod/` sit there, so `src/` is the module root and the import path stays `opmodel.dev/catalogs/opm-experimental@v1`.
+The CUE module lives under `src/` — both the catalog package files and `cue.mod/` sit there, so `src/` is the module root and the import path stays `opmodel.dev/catalogs/opm_experimental@v1`.
 
 ```text
-src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm-experimental@v1
+src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm_experimental@v1
 src/catalog.cue          catalog manifest (c.#Catalog; empty transformers for now)
 src/identity/            ModulePath + Version (publish-time stamping anchor)
 src/INDEX.md             generated definition index
