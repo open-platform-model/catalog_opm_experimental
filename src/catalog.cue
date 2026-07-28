@@ -27,4 +27,6 @@ metadata: {
 	(tf.#NamespaceTransformer.metadata.fqn):         tf.#NamespaceTransformer
 	(tf.#ValidatingWebhookTransformer.metadata.fqn): tf.#ValidatingWebhookTransformer
 	(tf.#MutatingWebhookTransformer.metadata.fqn):   tf.#MutatingWebhookTransformer
+	(tf.#NetworkPolicyTransformer.metadata.fqn):     tf.#NetworkPolicyTransformer
+	(tf.#AdmissionPolicyTransformer.metadata.fqn):   tf.#AdmissionPolicyTransformer
 }
