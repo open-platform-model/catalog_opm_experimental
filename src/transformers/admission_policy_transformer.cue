@@ -104,17 +104,24 @@ import (
 _testVAPComponent: res.#ValidatingAdmissionPolicies & {
 	spec: validatingAdmissionPolicies: "stable-channel-policy-istio-system.istio.io": {
 		failurePolicy: "Fail"
-		matchConstraints: resourceRules: [{
-			apiGroups: [
-				"security.istio.io",
-				"networking.istio.io",
-				"telemetry.istio.io",
-				"extensions.istio.io",
-			]
-			apiVersions: ["*"]
-			operations: ["CREATE", "UPDATE"]
-			resources: ["*"]
-		}]
+		matchConstraints: {
+			objectSelector: matchExpressions: [{
+				key:      "istio.io/rev"
+				operator: "In"
+				values: ["default"]
+			}]
+			resourceRules: [{
+				apiGroups: [
+					"security.istio.io",
+					"networking.istio.io",
+					"telemetry.istio.io",
+					"extensions.istio.io",
+				]
+				apiVersions: ["*"]
+				operations: ["CREATE", "UPDATE"]
+				resources: ["*"]
+			}]
+		}
 		variables: [{
 			name:       "isEnvoyFilter"
 			expression: "object.kind == 'EnvoyFilter'"
