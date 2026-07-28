@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha.3](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha.2...v1.2.0-alpha.3) (2026-07-28)
+
+
+### Features
+
+* add NetworkPolicy trait and ValidatingAdmissionPolicy resource ([#10](https://github.com/open-platform-model/catalog_opm_experimental/issues/10)) ([377694f](https://github.com/open-platform-model/catalog_opm_experimental/commit/377694f8dae5b3a67973b17015f8da2f7b62a041))
+
 ## [1.2.0-alpha.2](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha.1...v1.2.0-alpha.2) (2026-07-27)
 
 
