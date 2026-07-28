@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha.4](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha.3...v1.2.0-alpha.4) (2026-07-28)
+
+
+### Bug Fixes
+
+* widen ValidatingAdmissionPolicy matchConstraints ([#12](https://github.com/open-platform-model/catalog_opm_experimental/issues/12)) ([5c2b5fb](https://github.com/open-platform-model/catalog_opm_experimental/commit/5c2b5fbdd676c8b023a8ae627683880d2654f49f))
+
 ## [1.2.0-alpha.3](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha.2...v1.2.0-alpha.3) (2026-07-28)
 
 
