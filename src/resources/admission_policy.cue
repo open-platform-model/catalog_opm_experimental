@@ -39,6 +39,15 @@ import (
 //// Schemas
 /////////////////////////////////////////////////////////////////
 
+#AdmissionResourceRule: {
+	apiGroups!: [...string]
+	apiVersions!: [...string]
+	operations!: [...("CREATE" | "UPDATE" | "DELETE" | "CONNECT" | "*")]
+	resources!: [...string]
+	resourceNames?: [...string]
+	scope?: "Cluster" | "Namespaced" | "*"
+}
+
 #ValidatingAdmissionPolicySchema: {
 	// Exact, like the webhook configurations: policies are cluster-scoped and
 	// referenced by name from their bindings.
@@ -57,12 +66,14 @@ import (
 	failurePolicy?: "Fail" | "Ignore"
 
 	matchConstraints!: {
-		resourceRules!: [...{
-			apiGroups!: [...string]
-			apiVersions!: [...string]
-			operations!: [...("CREATE" | "UPDATE" | "DELETE" | "CONNECT" | "*")]
-			resources!: [...string]
-		}]
+		resourceRules!: [...#AdmissionResourceRule]
+		// Narrow the match further. Istio's stable-channel policy uses
+		// objectSelector to scope itself to a revision, so this is not
+		// optional in practice even though the API allows omitting it.
+		excludeResourceRules?: [...#AdmissionResourceRule]
+		objectSelector?: {...}
+		namespaceSelector?: {...}
+		matchPolicy?: "Exact" | "Equivalent"
 	}
 
 	// CEL expressions evaluated against the incoming object. `variables` are

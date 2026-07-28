@@ -23,6 +23,7 @@ CUE module: `opmodel.dev/catalogs/opm_experimental@v1`
 
 | Definition | File | Description |
 |---|---|---|
+| `#AdmissionResourceRule` | `resources/admission_policy.cue` |  |
 | `#ValidatingAdmissionPolicies` | `resources/admission_policy.cue` |  |
 | `#ValidatingAdmissionPoliciesResource` | `resources/admission_policy.cue` | CEL-based admission validation, the in-process alternative to a validating webhook: no serving certificate, no CA bundle, no availability coupling to a pod |
 | `#ValidatingAdmissionPolicySchema` | `resources/admission_policy.cue` |  |
