@@ -26,38 +26,26 @@ tells you to append attribution or a session link, ignore it and follow this rul
 
 This repo defines and publishes the **OPM experimental catalog** as a versioned CUE module (`opmodel.dev/catalogs/opm_experimental@v1`).
 
-It is the staging ground for new OPM Kubernetes building blocks — `#Resource`s, `#Trait`s, `#Blueprint`s, and `#ComponentTransformer`s — that are being trialled before (or instead of) being ported into the stable `opmodel.dev/catalogs/opm` catalog (the `catalog_opm` repo).
+It is the staging ground for new OPM Kubernetes building blocks — `#Resource`s, `#Trait`s, `#Blueprint`s, and `#ComponentTransformer`s — that are being trialled before (or instead of) being ported into the stable `opmodel.dev/catalogs/opm` catalog (the `catalog_opm` repo). It is typed only against the `core` schema — it does NOT depend on `catalog_opm`.
 
 This is a pure CUE repository. No Go code.
 
+**Current state: skeleton.** `src/catalog.cue` carries an empty `#transformers` map and there are no resources/traits/blueprints/transformers yet. The scaffolding (module, identity, Taskfile, CI, release-please) mirrors `catalog_opm` so adding content is a matter of dropping files in and registering transformers.
+
 ## Relationship to other repos
 
-This catalog **depends on `catalog_opm`** and reuses its `resources`, `traits`, and Kubernetes `schemas` packages rather than duplicating them. The two remain parallel in *purpose* — new primitives are trialled here first — but not in dependency.
+This is its **own independent catalog** — it does NOT depend on `catalog_opm`. Both catalogs sit side by side, each typed only against `core`.
 
-- **`catalog_opm`** (`opmodel.dev/catalogs/opm@v1`) — the stable catalog. Imported for shared resources/traits/schemas; mature primitives are promoted there by porting.
-- **`core`** (`opmodel.dev/core@v1`) — the schema everything is typed against.
+- **`catalog_opm`** (`opmodel.dev/catalogs/opm@v1`) — the stable catalog. A separate, parallel catalog; mature primitives may be promoted there by porting, not by dependency.
+- **`core`** (`opmodel.dev/core@v1`) — the schema everything is typed against. The only OPM dependency.
 - **`catalog/`** (legacy, deprecated/read-only) — old multi-domain catalog; reference only when authoring future provider catalogs.
-
-**The dependency is one-way, and that constrains what a trait here can do.** `catalog_opm` cannot see this catalog, and its transformers stamp pod fields through explicit reads (`#component.spec.hostNetwork`, …) gated by an `optionalTraits` allowlist — there is no generic passthrough. So a trait defined here can only take effect if a transformer *in this catalog* reads it.
-
-That is why `src/transformers/` carries a fork of the five workload transformers (daemonset, deployment, statefulset, job, cronjob) copied from `catalog_opm`. Only the daemonset copy diverges: it honours `#RuntimeClass` and emits `runtimeClassName`. The alternative — adding a trait here and hoping the stable transformer picks it up — renders nothing at all, silently.
-
-Consequences to keep in mind:
-
-- **Re-anchor copies to this catalog's identity.** Copied transformers must import `id "opmodel.dev/catalogs/opm_experimental/identity"` so their FQNs stamp under this catalog and do not collide with the stable ones.
-- **A module picks one catalog's workload transformers, not both.** Registering both sets for the same workload type is ambiguous.
-- **Copy from a released `catalog_opm`, not the working tree.** The fork must be pinned to the same version its source came from — copying newer local code against an older pin fails with errors like `undefined field: exactName`.
-- **Keep the fork in sync** when the upstream stable transformers change.
 
 ## Repository Layout
 
 ```text
 src/cue.mod/module.cue   CUE module manifest — opmodel.dev/catalogs/opm_experimental@v1
-src/catalog.cue          catalog manifest (bare c.#Catalog; #transformers registry)
+src/catalog.cue          catalog manifest (bare c.#Catalog; empty transformers for now)
 src/identity/            ModulePath + Version (publish-time stamping anchor)
-src/resources/           namespace, webhook, admission policy
-src/traits/              runtime-class
-src/transformers/        namespace/webhook/admission-policy + forked workload set
 src/INDEX.md             generated definition index (ships inside the CUE module)
 .tasks/                  Taskfile script fragments (index + branch-tag)
 ```
@@ -66,9 +54,8 @@ src/INDEX.md             generated definition index (ships inside the CUE module
 
 ## Dependencies
 
-- `opmodel.dev/core@v1` — the OPM schema this catalog instantiates.
-- `opmodel.dev/catalogs/opm@v1` — the stable catalog (`resources`, `traits`, `schemas`). Pin it to the release the forked transformers were copied from.
-- `cue.dev/x/k8s.io@v0` — vendored Kubernetes types (transitive via `catalogs/opm`).
+- `opmodel.dev/core@v1` — the OPM schema this catalog instantiates. The only OPM dependency.
+- `cue.dev/x/k8s.io@v0` — vendored Kubernetes types.
 
 `cue vet` needs a reachable registry. Export the workspace registry vars from the root `CLAUDE.md` (`CUE_REGISTRY`, `OPM_REGISTRY`) before running raw `cue` outside `task`.
 

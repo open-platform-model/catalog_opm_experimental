@@ -28,23 +28,4 @@ metadata: {
 	(tf.#ValidatingWebhookTransformer.metadata.fqn): tf.#ValidatingWebhookTransformer
 	(tf.#MutatingWebhookTransformer.metadata.fqn):   tf.#MutatingWebhookTransformer
 	(tf.#AdmissionPolicyTransformer.metadata.fqn):   tf.#AdmissionPolicyTransformer
-
-	// Workload transformers forked from opmodel.dev/catalogs/opm. They are
-	// copies of the stable catalog's, except that the daemonset one
-	// additionally honours the experimental #RuntimeClass trait — a pod field
-	// the stable transformers have no way to emit.
-	//
-	// The fork exists because runtimeClassName lands INSIDE a DaemonSet that
-	// catalog_opm owns; unlike #Namespaces (a standalone object with its own
-	// transformer here), it cannot be contributed from the outside. Their FQNs
-	// stamp under this catalog's identity, so they do not collide with the
-	// stable catalog's — a module picks one catalog's workload transformers,
-	// not both.
-	//
-	// Keep in sync when the upstream stable transformers change.
-	(tf.#DaemonSetTransformer.metadata.fqn):   tf.#DaemonSetTransformer
-	(tf.#DeploymentTransformer.metadata.fqn):  tf.#DeploymentTransformer
-	(tf.#StatefulsetTransformer.metadata.fqn): tf.#StatefulsetTransformer
-	(tf.#JobTransformer.metadata.fqn):         tf.#JobTransformer
-	(tf.#CronJobTransformer.metadata.fqn):     tf.#CronJobTransformer
 }
