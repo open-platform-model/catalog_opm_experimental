@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0-alpha.5](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha.4...v1.2.0-alpha.5) (2026-08-05)
+
+
+### Features
+
+* add runtime-class trait and fork the workload transformers ([6c30857](https://github.com/open-platform-model/catalog_opm_experimental/commit/6c308579634c130a10c54779125a28899788f432))
+
+
+### Reverts
+
+* remove the runtime-class trait and workload transformer fork ([d58dfce](https://github.com/open-platform-model/catalog_opm_experimental/commit/d58dfcef11465581c28e13b4be69e1ffbea2fcb0))
+
 ## [1.2.0-alpha.4](https://github.com/open-platform-model/catalog_opm_experimental/compare/v1.2.0-alpha.3...v1.2.0-alpha.4) (2026-07-28)
 
 
