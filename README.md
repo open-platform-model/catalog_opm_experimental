@@ -6,7 +6,7 @@ This repository is a single CUE module, `opmodel.dev/catalogs/opm_experimental@v
 
 The module is explicitly experimental and ships on a v1 alpha prerelease line (`v1.x.x-alpha.x`, enhancement 0002 / D14): expect breaking changes in any release.
 
-**Current state:** skeleton — scaffolding only, no catalog content yet.
+**Current state:** carries the namespace/webhook/admission-policy primitives, the `#RuntimeClass` trait, and a fork of the five workload transformers (daemonset, deployment, statefulset, job, cronjob).
 
 ## Layout
 
@@ -21,10 +21,13 @@ src/INDEX.md             generated definition index
 
 ## Dependencies
 
-- `opmodel.dev/core@v1` — the OPM schema this catalog instantiates. The only OPM dependency.
+- `opmodel.dev/core@v1` — the OPM schema this catalog instantiates.
+- `opmodel.dev/catalogs/opm@v1` — the stable catalog, for its `resources`, `traits`, and Kubernetes `schemas` packages.
 - `cue.dev/x/k8s.io@v0` — vendored Kubernetes types.
 
-This catalog is independent of `catalog_opm` (`opmodel.dev/catalogs/opm`) — they are parallel catalogs, not layered.
+This catalog **depends on** `catalog_opm` rather than duplicating it. The two are still parallel in purpose — new primitives are trialled here — but reusing the stable catalog's resource and trait packages avoids forking `#ContainerResource`, `#Volumes`, `#SecurityContext` and friends just to add one field.
+
+The dependency is one-way: `catalog_opm` does not know this catalog exists. A primitive here can therefore never change what a stable transformer emits — see the workload-transformer note in [`CLAUDE.md`](CLAUDE.md).
 
 ## Release lifecycle
 

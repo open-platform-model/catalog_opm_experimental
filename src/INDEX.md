@@ -42,13 +42,35 @@ CUE module: `opmodel.dev/catalogs/opm_experimental@v1`
 
 ---
 
+## Traits
+
+| Definition | File | Description |
+|---|---|---|
+| `#RuntimeClass` | `traits/runtime_class.cue` |  |
+| `#RuntimeClassTrait` | `traits/runtime_class.cue` | Selects the container runtime that executes the pod, by setting `runtimeClassName` on the pod spec |
+
+---
+
 ## Transformers
 
 | Definition | File | Description |
 |---|---|---|
 | `#AdmissionPolicyTransformer` | `transformers/admission_policy_transformer.cue` | AdmissionPolicyTransformer converts ValidatingAdmissionPolicies resources to Kubernetes ValidatingAdmissionPolicy + ValidatingAdmissionPolicyBinding pairs |
+| `#ToK8sContainer` | `transformers/container_helpers.cue` | #ToK8sContainer converts an OPM #ContainerSchema to a Kubernetes #Container |
+| `#ToK8sContainers` | `transformers/container_helpers.cue` | #ToK8sContainers converts a list of OPM containers to Kubernetes containers |
+| `#ToK8sKeyToPath` | `transformers/container_helpers.cue` | #ToK8sKeyToPath converts OPM key/path/mode items to K8s KeyToPath entries |
+| `#ToK8sObjectProjection` | `transformers/container_helpers.cue` | #ToK8sObjectProjection converts an OPM object projection (configMap or secret source inside a projected volume) to its K8s shape |
+| `#ToK8sVolumes` | `transformers/container_helpers.cue` | #ToK8sVolumes converts OPM volumes map to Kubernetes volumes list |
+| `#CronJobTransformer` | `transformers/cronjob_transformer.cue` | CronJobTransformer converts scheduled task components to Kubernetes CronJobs |
+| `#DaemonSetTransformer` | `transformers/daemonset_transformer.cue` | DaemonSetTransformer converts daemon workload components to Kubernetes DaemonSets |
+| `#DeploymentTransformer` | `transformers/deployment_transformer.cue` | DeploymentTransformer converts stateless workload components to Kubernetes Deployments |
+| `#JobTransformer` | `transformers/job_transformer.cue` | JobTransformer converts task workload components to Kubernetes Jobs |
 | `#MutatingWebhookTransformer` | `transformers/mutating_webhook_transformer.cue` | MutatingWebhookTransformer converts MutatingWebhooks resources to Kubernetes MutatingWebhookConfigurations |
+| `#WorkloadName` | `transformers/name_helpers.cue` | #WorkloadName resolves a workload's rendered object name: the exact name from #ResourceNameTrait when set, otherwise the instance-scoped default |
 | `#NamespaceTransformer` | `transformers/namespace_transformer.cue` | NamespaceTransformer converts Namespaces resources to Kubernetes Namespaces |
+| `#PodSchedulingFields` | `transformers/pod_helpers.cue` | Pod-spec scheduling fields from #PodSchedulingTrait |
+| `#PodTemplateMetadata` | `transformers/pod_helpers.cue` | Pod-template metadata: context labels merged with #PodMetadataTrait labels, plus pod-only annotations |
+| `#StatefulsetTransformer` | `transformers/statefulset_transformer.cue` | StatefulsetTransformer converts stateful workload components to Kubernetes StatefulSets |
 | `#ValidatingWebhookTransformer` | `transformers/validating_webhook_transformer.cue` | ValidatingWebhookTransformer converts ValidatingWebhooks resources to Kubernetes ValidatingWebhookConfigurations |
 
 ---
