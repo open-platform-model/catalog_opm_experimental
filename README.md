@@ -6,7 +6,9 @@ This repository is a single CUE module, `opmodel.dev/catalogs/opm_experimental@v
 
 The module is explicitly experimental and ships on a v1 alpha prerelease line (`v1.x.x-alpha.x`, enhancement 0002 / D14): expect breaking changes in any release.
 
-**Current state:** skeleton — scaffolding only, no catalog content yet.
+**Current state:** carries the `#Namespaces` resource plus the admission-webhook and admission-policy primitives, each with its own transformer.
+
+**Scope limit:** a primitive can be incubated here only if it owns a standalone transformer. Anything an existing *workload* transformer must read — any field inside a pod spec — has to go straight into `catalog_opm`. See [`CLAUDE.md`](CLAUDE.md) for why, and [enhancements#12](https://github.com/open-platform-model/enhancements/issues/12) for the gap that would lift the restriction.
 
 ## Layout
 

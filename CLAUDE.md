@@ -30,7 +30,7 @@ It is the staging ground for new OPM Kubernetes building blocks — `#Resource`s
 
 This is a pure CUE repository. No Go code.
 
-**Current state: skeleton.** `src/catalog.cue` carries an empty `#transformers` map and there are no resources/traits/blueprints/transformers yet. The scaffolding (module, identity, Taskfile, CI, release-please) mirrors `catalog_opm` so adding content is a matter of dropping files in and registering transformers.
+**Current state:** carries the `#Namespaces` resource and the admission-webhook / admission-policy primitives, each with its own transformer.
 
 ## Relationship to other repos
 
@@ -69,6 +69,20 @@ Same publish-time stamping as `catalog_opm`: the committed tree resolves `identi
 2. Register each transformer in `src/catalog.cue`'s `#transformers` map, keyed by `metadata.fqn`. Resources/traits/blueprints surface transitively via transformer required/optional maps.
 3. `task generate:index` to refresh `src/INDEX.md`.
 4. `task check` (fmt + vet + INDEX freshness) before finishing.
+
+### What can and cannot be incubated here
+
+**A primitive can live here only if it owns a standalone transformer** — one that emits its own object. `#Namespaces` qualifies: its transformer emits a Namespace, and nothing else competes to emit it.
+
+**A primitive that an existing workload transformer must read cannot live here at all.** Anything that lands *inside* a pod spec — `runtimeClassName`, `hostAliases`, `topologySpreadConstraints`, a new `securityContext` field — has to go straight into `catalog_opm`, wired into its transformers. Three properties of the kernel make this unavoidable:
+
+- **Matching is purely positive.** `candidateSatisfied` (`library/opm/compile/match.go`) only tests that `requiredLabels`/`requiredResources`/`requiredTraits` are subsets of what the component declares, and missing `required*` fields are trivially satisfied. A transformer cannot decline to match, and nothing expresses "handle this instead of that one".
+- **Multiple matches are legitimate and each renders.** Shipping a competing workload transformer here does not override the stable one — both emit an object for the same component.
+- **Platform subscriptions are version-granular.** `#SubscriptionFilter` is `range`/`allow`/`deny`, all SemVer, so a platform admits a catalog version whole. There is no way to take this catalog's resources while declining its transformers.
+
+Attempting the fork anyway (reverted in d58dfce) would have double-rendered every daemon component in any platform subscribing to both catalogs. The NetworkPolicy trait hit the same wall and was ported to `catalog_opm`; `#RuntimeClass` followed it.
+
+Tracked upstream as [enhancements#12](https://github.com/open-platform-model/enhancements/issues/12) — if that lands, this restriction may lift.
 
 ## Build And Dev Commands
 
